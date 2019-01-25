@@ -21,8 +21,8 @@ const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 mongoose
   // .connect('mongodb://localhost/passportpractice', {useNewUrlParser: true})
-  // .connect("mongodb://admin:superadmin2019@ds263089.mlab.com:63089/passport-database")
-  .connect(process.env.MONGODB, { useNewUrlParser: true })
+  .connect("mongodb://admin:superadmin2019@ds263089.mlab.com:63089/passport-database")
+  // .connect(process.env.MONGODB, { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
