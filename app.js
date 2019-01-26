@@ -112,9 +112,7 @@ passport.use(new SlackStrategy({
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ slackID: profile.id })
   .then(user => {
-    // if (err) {
-    //   return done(err);
-    // }
+ 
     if (user) {
       return done(null, user);
     }
