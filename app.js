@@ -107,8 +107,8 @@ passport.use(new GoogleStrategy({
 
 
 passport.use(new SlackStrategy({
-  clientID: "2432150752.526818896051",
-  clientSecret: "8f52693260f64ec61195225ca3e4e182"
+  clientID: "787043684803-k7q78mfv1f9h2ab8q6l2cons1497b75h.apps.googleusercontent.com",
+  clientSecret: "4WeiFBarpURYz5zT5mGc5oyg"
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ slackID: profile.id })
   .then(user => {
