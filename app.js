@@ -16,13 +16,14 @@ const User         = require("./models/user");
 const flash        = require("connect-flash");
 const SlackStrategy = require('passport-slack').Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const MongoStore     = require("connect-mongo")(session)
 
 
 
 mongoose
   // .connect('mongodb://localhost/passportpractice', {useNewUrlParser: true})
-  .connect("mongodb://admin:superadmin2019@ds263089.mlab.com:63089/passport-database")
-  // .connect(process.env.MONGODB, { useNewUrlParser: true })
+  // .connect("mongodb://admin:superadmin2019@ds263089.mlab.com:63089/passport-database")
+  .connect(process.env.MONGODB, { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -43,7 +44,8 @@ app.use(cookieParser());
 app.use(session({
   secret: "ñkafkdañsflask",
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
 passport.serializeUser((user, callback) =>{
